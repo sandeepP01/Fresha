@@ -44,15 +44,15 @@ public class BasicTest extends ConfigReader {
 
     @BeforeMethod
     public void browserSetup () {
-//        String platform = System.getProperty("platform");
-//        String browser = System.getProperty("browser");
-//        String operatingSystem = System.getProperty("os");
-//        String version = System.getProperty("version");
+        String platform = System.getProperty("platform");
+        String browser = System.getProperty("browser");
+        String operatingSystem = System.getProperty("os");
+        String version = System.getProperty("version");
 
-        String platform = System.getenv("platform");
-        String browser = System.getenv("browser");
-        String operatingSystem = System.getenv("OS");
-        String version = System.getenv("version");
+//        String platform = System.getenv("platform");
+//        String browser = System.getenv("browser");
+//        String operatingSystem = System.getenv("OS");
+//        String version = System.getenv("version");
 
         if (platform.equalsIgnoreCase("sauceLab")) {
             try {
@@ -76,11 +76,11 @@ public class BasicTest extends ConfigReader {
         } else if (platform.equalsIgnoreCase("LambdaTest")) {
             try {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
-                capabilities.setCapability("browserName", "chrome");
+                capabilities.setCapability("browserName", browser);
                 capabilities.setCapability("version", "106");
                 capabilities.setCapability("platform", "win10");
-                capabilities.setCapability("build", "Internet");
-                capabilities.setCapability("name", "Internet");
+                capabilities.setCapability("build", "Fresha");
+                capabilities.setCapability("name", "Fresha");
                 driver = new RemoteWebDriver(new URL("https://" + lambdatest_username + ":" + lambdatest_access_key + lambdaURL), capabilities);
             } catch (MalformedURLException e) {
                 System.out.println("Invalid URL");
