@@ -14,7 +14,7 @@ public class AddNewAppointmentCalendarPage extends PageBasics  {
     @FindBy (css = "div[data-qa='calendar-new-appointment']")
     protected WebElement newAppointment;
 
-    @FindBy (css ="div[data-qa='appointment-item-card'] > div:nth-child(3) > div:nth-child(2) > select")
+    @FindBy (css = "div[data-qa='appointment-item-card'] > div:nth-child(3) > div:nth-child(2) > select")
     protected WebElement startTimeDropDown;
 
     @FindBy (css = "input[data-qa='selected-service']")

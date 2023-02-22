@@ -19,9 +19,8 @@ public class DeleteServiceCataloguePage extends PageBasics {
     @FindBy (css = "button[data-qa='delete-service-confirm-button']")
     protected WebElement confirmDelete;
 
-    @FindBy (css = "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(3) > div > div > div > div > div.BpP7K7 > div > div > div > div:nth-child(2) > div > div > div")
+    @FindBy (css = "div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div > div")
     protected WebElement countServices;
-
 
     public DeleteServiceCataloguePage(WebDriver driver) {
         super(driver);
@@ -30,7 +29,7 @@ public class DeleteServiceCataloguePage extends PageBasics {
 
     public boolean deleteService () {
         clickOnElement(catalogueTab);
-        waitForVisibilityOfElement("#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(3) > div > div > div > div > div.BpP7K7 > div > div > div > div:nth-child(2) > div > div > div");
+        waitForVisibilityOfElement("div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div > div");
         int countStart = countChildElements(countServices);
         System.out.println(countStart);
         clickOnElement(selectService);

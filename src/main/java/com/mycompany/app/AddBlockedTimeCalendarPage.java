@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AddBlockedTimeCalendarPage extends PageBasics {
 
-    @FindBy (css = "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div > div:nth-child(2) > div > div > div:nth-child(2) > div:nth-child(5) > div > div:nth-child(4) > div:first-child > div")
+    @FindBy (css = "div:nth-child(5) > div > div:nth-child(4) > div:first-child > div")
     protected WebElement employeeIcon;
 
     @FindBy (css = "button[data-qa='staff-actions-blocked-time']")
@@ -27,7 +27,7 @@ public class AddBlockedTimeCalendarPage extends PageBasics {
     @FindBy (css = "select[name='end']")
     protected WebElement endTimeDropDown;
 
-    @FindBy  (css = "#app > div:nth-child(8) > div > div > div > div > div > div > div > div:nth-child(2) > div > div > form > div:nth-child(3) > label > div")
+    @FindBy  (css = "label[data-qa='allowOnlineBooking-label'] > div:first-child")
     protected WebElement allowOnlineBookingCheckBox;
 
     @FindBy (name = "note" )
@@ -53,7 +53,7 @@ public class AddBlockedTimeCalendarPage extends PageBasics {
         chooseItemFromDDWithSelect(teamMemberDropDown, "Tom");
         chooseItemFromDDWithSelect(startTimeDropDown, "12:30pm");
         chooseItemFromDDWithSelect(endTimeDropDown, "1:00pm");
-        waitForVisibilityOfElement ( "#app > div:nth-child(8) > div > div > div > div > div > div > div > div:nth-child(2) > div > div > form > div:nth-child(3) > label > div");
+        waitForVisibilityOfElement ( "label[data-qa='allowOnlineBooking-label'] > div:first-child");
         clickOnElement(allowOnlineBookingCheckBox);
         enterText(description, "Tea break");
         clickOnElement(save);

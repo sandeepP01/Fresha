@@ -45,8 +45,6 @@ public class AddClientClientsPage extends PageBasics {
     @FindBy (css =  "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p" )
     protected WebElement clientList;
 
-    protected String countClients = "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p";
-
     public AddClientClientsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
@@ -54,7 +52,7 @@ public class AddClientClientsPage extends PageBasics {
 
     public boolean addClient () {
         clickOnElement(clientsIcon);
-        waitForVisibilityOfElement(countClients);
+        waitForVisibilityOfElement("#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p");
         int clientNum = Integer.parseInt(clientList.getText());
         waitUntilElementToBeClickable(addClient);
         clickOnElement(addClient);
@@ -69,7 +67,7 @@ public class AddClientClientsPage extends PageBasics {
         enterText(year, "2001");
         enterText(cleintInfo, "Allergy to conditioner");
         clickOnElement(button);
-        waitForVisibilityOfElement(countClients);
+        waitForVisibilityOfElement("#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p");
         int clientNumEnd = Integer.parseInt(clientList.getText());
         return (clientNum == clientNumEnd);
     }

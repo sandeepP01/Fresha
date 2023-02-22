@@ -12,7 +12,7 @@ public class AddVoucherCataloguePage extends PageBasics {
     @FindBy (css = "[data-qa='navtabs-item-vouchers']")
     protected WebElement vouchersTab;
 
-    @FindBy (css = "#react > div > div.h0dwgm > div.dijn9G._4kaAnr > div._3on5gM > div > div._06c6bcd31._7691f5d31 > div > div > div > div > div:nth-child(2) > table > tbody")
+    @FindBy (css = "div:nth-child(2) > table > tbody")
     protected WebElement countVouchers;
 
     @FindBy (css = "button[data-qa='vouchers-new-button']")
@@ -36,10 +36,10 @@ public class AddVoucherCataloguePage extends PageBasics {
     @FindBy (css = "a[data-qa='open-select-services-modal']")
     protected WebElement serviceIncludedButton;
 
-    @FindBy (css = "#app > div:nth-child(8) > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(1) > button")
+    @FindBy (css = "div:nth-child(2) > button")
     protected WebElement unSelectService1;
 
-    @FindBy (css = "#app > div:nth-child(8) > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(7) > button")
+    @FindBy (css = "div:nth-child(4) > button")
     protected WebElement unSelectService2;
 
     @FindBy (css = "button[data-qa='select-services-save-button']")
@@ -80,7 +80,7 @@ public class AddVoucherCataloguePage extends PageBasics {
         clickOnElement(catalogueTab);
         waitUntilElementToBeClickable(vouchersTab);
         clickOnElement(vouchersTab);
-        waitForVisibilityOfElement("#react > div > div.h0dwgm > div.dijn9G._4kaAnr > div._3on5gM > div > div._06c6bcd31._7691f5d31 > div > div > div > div > div:nth-child(2) > table > tbody");
+        waitForVisibilityOfElement("div:nth-child(2) > table > tbody");
         int startCount = countChildElements(countVouchers);
         System.out.println(startCount);
         clickOnElement(addVoucherType);
@@ -106,7 +106,7 @@ public class AddVoucherCataloguePage extends PageBasics {
         enterText(notes, "Gift Pack" );
         clickOnElement(saveButton);
         pauseForAWhile(2000);
-        waitForVisibilityOfElement("#react > div > div.h0dwgm > div.dijn9G._4kaAnr > div._3on5gM > div > div._06c6bcd31._7691f5d31 > div > div > div > div > div:nth-child(2) > table > tbody");
+        waitForVisibilityOfElement("div:nth-child(2) > table > tbody");
         int endCount = countChildElements(countVouchers);
         System.out.println(endCount);
         return (startCount+1 == endCount);

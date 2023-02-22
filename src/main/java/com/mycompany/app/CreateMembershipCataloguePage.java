@@ -46,10 +46,7 @@ public class CreateMembershipCataloguePage extends PageBasics {
     @FindBy(css = "button[data-qa='save-paidPlan-button']")
     protected WebElement saveMembershipButton;
 
-    @FindBy(css = "div[data-qa='settings-nav-header-title'] > h1")
-    protected WebElement pageHeader;
-
-    @FindBy (css = "#react > div > div > div > div > div > div > div > div > div > table > tbody")
+    @FindBy (css = "table > tbody")
     protected WebElement countMembership;
 
     @FindBy(css = "button[data-qa='fresha-profile-overview-start-button']")
@@ -86,7 +83,7 @@ public class CreateMembershipCataloguePage extends PageBasics {
         enterText(enterPrice, "100");
         clickOnElement(selectColor);
         clickOnElement(saveMembershipButton);
-        waitForVisibilityOfElement("#react > div > div > div > div > div > div > div > div > div > table > tbody");
+        waitForVisibilityOfElement("table > tbody");
         int endMembershipCount = countChildElements(countMembership);
         System.out.println(endMembershipCount);
         return (startMembershipCount+1 == endMembershipCount);

@@ -41,7 +41,7 @@ public class AddNewServiceCataloguePage extends PageBasics {
     @FindBy (css = "textarea[name='aftercare']")
     protected WebElement afterCareDescription;
 
-    @FindBy (css = "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div > form > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(3) > div:nth-child(2) > div > div > div > div > div > div:nth-child(2) > button > label")
+    @FindBy (css = "div:nth-child(2) > button > label")
     protected WebElement teamCheckBox;
 
     @FindBy (css = "input[name='servicePricingLevels[0].price']")
@@ -50,7 +50,7 @@ public class AddNewServiceCataloguePage extends PageBasics {
     @FindBy (css = "button[data-qa='save-service-button']")
     protected WebElement saveButton;
 
-    @FindBy (css = "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(3) > div > div > div > div > div.BpP7K7 > div > div > div > div:nth-child(2) > div > div > div")
+    @FindBy (css = "div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div > div")
     protected WebElement countServices;
 
     public AddNewServiceCataloguePage(WebDriver driver) {
@@ -60,7 +60,7 @@ public class AddNewServiceCataloguePage extends PageBasics {
 
     public boolean addNewService () {
         clickOnElement(catalogueTab);
-        waitForVisibilityOfElement("#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(3) > div > div > div > div > div.BpP7K7 > div > div > div > div:nth-child(2) > div > div > div");
+        waitForVisibilityOfElement("div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div > div");
         int countStart = countChildElements(countServices);
         System.out.println(countStart);
         clickOnElement(addNewButton);
@@ -84,7 +84,7 @@ public class AddNewServiceCataloguePage extends PageBasics {
         enterText(price, "30");
         clickOnElement(saveButton);
         pauseForAWhile(2000);
-        waitForVisibilityOfElement("#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(3) > div > div > div > div > div.BpP7K7 > div > div > div > div:nth-child(2) > div > div > div");
+        waitForVisibilityOfElement("div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div > div");
         int countEnd = countChildElements(countServices);
         System.out.println(countEnd);
         return (countStart+1 == countEnd);

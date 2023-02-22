@@ -13,10 +13,8 @@ public class DeleteClientClientsPage extends PageBasics {
     @FindBy (css = "a[data-qa='nav-d-clients']")
     protected WebElement clientsIcon;
 
-    @FindBy(css =  "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p" )
+    @FindBy(css = "div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p")
     protected WebElement clientList;
-
-    protected String countClients = "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p";
 
     @FindBy (css = "td:nth-child(1) > label")
     protected WebElement selectClient;
@@ -37,7 +35,7 @@ public class DeleteClientClientsPage extends PageBasics {
 
     public boolean deleteClient () {
         clickOnElement(clientsIcon);
-        waitForVisibilityOfElement(countClients);
+        waitForVisibilityOfElement("div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p");
         int clientNum = Integer.parseInt(clientList.getText());
         System.out.println(clientNum);
         selectClient.click();
@@ -48,7 +46,7 @@ public class DeleteClientClientsPage extends PageBasics {
         }
             clickOnElement(deleteButton);
             pauseForAWhile(2000);
-            waitForVisibilityOfElement(countClients);
+            waitForVisibilityOfElement("div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p");
             int clientNumEnd = Integer.parseInt(clientList.getText());
             System.out.println(clientNumEnd);
             return (clientNum != clientNumEnd);

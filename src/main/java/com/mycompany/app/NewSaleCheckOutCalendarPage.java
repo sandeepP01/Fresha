@@ -7,17 +7,17 @@ import org.openqa.selenium.support.PageFactory;
 
 public class NewSaleCheckOutCalendarPage extends PageBasics {
 
-    @FindBy(css = "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:first-child > div > div:first-child > div:nth-child(3) > button:last-child > div:nth-child(2)")
+    @FindBy(css = "button:last-child > div:nth-child(2)")
     protected WebElement add;
 
     @FindBy (css = "div[data-qa='calendar-new-sale']")
     protected WebElement newSale;
 
     @FindBy (css = "a[data-qa='tab-services']")
-    protected WebElement toCheckOutTab;
+    protected WebElement productsTab;
 
-    @FindBy (css = "#react > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(1)")
-    protected WebElement itemToCheckOut;
+    @FindBy (css = "tbody > tr:nth-child(1) > td:nth-child(1)")
+    protected WebElement selectItemToCheckOut;
 
     @FindBy (css = "button[data-qa='cart-continue-button']")
     protected WebElement continueButton;
@@ -49,11 +49,11 @@ public class NewSaleCheckOutCalendarPage extends PageBasics {
         pauseForAWhile(2000);
         clickOnElement(add);
         clickOnElement(newSale);
-        waitUntilElementToBeClickable(toCheckOutTab);
-        clickOnElement(toCheckOutTab);
+        waitUntilElementToBeClickable(productsTab);
+        clickOnElement(productsTab);
         pauseForAWhile(2000);
-        waitUntilElementToBeClickable(itemToCheckOut);
-        retryingFindClick(itemToCheckOut);
+        waitUntilElementToBeClickable(selectItemToCheckOut);
+        retryingFindClick(selectItemToCheckOut);
         waitUntilElementToBeClickable(continueButton);
         clickOnElement(continueButton);
         clickOnElement(tipOption);
