@@ -34,4 +34,10 @@ public class CataloguePageTests extends BasicTest {
         CreateMembershipCataloguePage createMembershipCataloguePage = new CreateMembershipCataloguePage(driver);
         Assert.assertTrue(createMembershipCataloguePage.createMembership());
     }
+
+    @Test (priority = 6, enabled = true)
+    public void deleteMembershipTest() {
+        DeleteMembershipCataloguePage deleteMembershipCataloguePage = new DeleteMembershipCataloguePage(driver);
+        Assert.assertTrue(deleteMembershipCataloguePage.deleteMembership());
+    }
 }

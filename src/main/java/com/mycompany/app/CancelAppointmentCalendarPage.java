@@ -13,7 +13,7 @@ public class CancelAppointmentCalendarPage extends PageBasics {
     @FindBy (css = "div[data-qa='swipeable-timelines'] > div:nth-child(13) > div")
     protected WebElement countAppoinments;
 
-    @FindBy (css = "div[data-qa='swipeable-timelines'] > div:nth-child(13) > div > div")
+    @FindBy (css = "div[data-qa='swipeable-timelines'] > div:nth-child(13) > div > div:first-child")
     protected WebElement selectAppointment;
 
     @FindBy (css = "button[data-qa='more-options-button']")
@@ -33,12 +33,11 @@ public class CancelAppointmentCalendarPage extends PageBasics {
         PageFactory.initElements(driver,this);
     }
 
-    public boolean cancelAppointment
-            () {
+    public boolean cancelAppointment() {
         waitForPageToLoad();
         int countStart = countChildElements(countAppoinments);
         System.out.println(countStart);
-        waitForVisibilityOfElement("div[data-qa='swipeable-timelines'] > div:nth-child(13) > div > div");
+        waitForVisibilityOfElement("div[data-qa='swipeable-timelines'] > div:nth-child(13) > div > div:first-child");
         moveToElementActions(selectAppointment);
         waitUntilElementToBeClickable(moreOptionsButton);
         clickOnElement(moreOptionsButton);
