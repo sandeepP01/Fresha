@@ -35,6 +35,7 @@ public class CancelAppointmentCalendarPage extends PageBasics {
 
     public boolean cancelAppointment() {
         waitForPageToLoad();
+        pauseForAWhile(2000);
         int countStart = countChildElements(countAppoinments);
         System.out.println(countStart);
         waitForVisibilityOfElement("div[data-qa='swipeable-timelines'] > div:nth-child(13) > div > div:first-child");

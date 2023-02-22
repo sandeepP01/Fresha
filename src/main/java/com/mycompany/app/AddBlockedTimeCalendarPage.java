@@ -27,7 +27,7 @@ public class AddBlockedTimeCalendarPage extends PageBasics {
     @FindBy (css = "select[name='end']")
     protected WebElement endTimeDropDown;
 
-    @FindBy  (css = "label[data-qa='allowOnlineBooking-label'] > div:first-child")
+    @FindBy  (css = "label[data-qa='allowOnlineBooking-label']")
     protected WebElement allowOnlineBookingCheckBox;
 
     @FindBy (name = "note" )
