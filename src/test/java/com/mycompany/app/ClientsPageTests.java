@@ -16,6 +16,13 @@ public class ClientsPageTests extends BasicTest {
        DeleteClientClientsPage deleteClientClientsPage =new DeleteClientClientsPage(driver);
         Assert.assertTrue(deleteClientClientsPage.deleteClient());
     }
+
+    @Test (priority = 3, enabled = true)
+    public void setupAutomatedMessageTest() {
+       AutomatedMessagesClientsPage automatedMessagesClientsPage = new AutomatedMessagesClientsPage(driver);
+       Assert.assertEquals(automatedMessagesClientsPage.setupAutomatedMessage(),
+               "Your 72 hour appointment reminder automated message is set up");
+    }
 }
 
 
