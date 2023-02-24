@@ -50,30 +50,29 @@ public class AddNewServiceCataloguePage extends PageBasics {
     @FindBy (css = "button[data-qa='save-service-button']")
     protected WebElement saveButton;
 
-    @FindBy (css = "div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div > div")
-    protected WebElement countServices;
+    @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
+    protected WebElement toastNotification;
 
     public AddNewServiceCataloguePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
 
-    public boolean addNewService () {
+    public String addNewService() {
         clickOnElement(catalogueTab);
-        waitForVisibilityOfElement("div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div > div");
-        int countStart = countChildElements(countServices);
-        System.out.println(countStart);
+        waitForPageToLoad();
+        waitUntilElementToBeClickable(addNewButton);
         clickOnElement(addNewButton);
+        waitUntilElementToBeClickable(addNewService);
         clickOnElement(addNewService);
         waitUntilElementToBeClickable(singleServiceButton);
         clickOnElement(singleServiceButton);
         waitUntilElementToBeClickable(serviceName);
         enterText(serviceName,"Women's Haircut");
         clickOnElement(treatmentTypeDropdown);
-        pauseForAWhile(5000);
         Actions actions = new Actions(driver);
         actions.moveToElement(treatmentTypeName).click().perform();
-        pauseForAWhile(2000);
+        waitUntilElementToBeClickable(serviceCategoryEditButton);
         clickOnElement(serviceCategoryEditButton);
         clickOnElement(serviceCategoryOption);
         scrollDown(2);
@@ -83,10 +82,7 @@ public class AddNewServiceCataloguePage extends PageBasics {
         waitUntilElementToBeClickable(price);
         enterText(price, "30");
         clickOnElement(saveButton);
-        pauseForAWhile(2000);
-        waitForVisibilityOfElement("div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div > div");
-        int countEnd = countChildElements(countServices);
-        System.out.println(countEnd);
-        return (countStart+1 == countEnd);
+        waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");
+        return toastNotification.getText();
     }
 }

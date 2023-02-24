@@ -8,13 +8,13 @@ public class ClientsPageTests extends BasicTest {
    @Test  (priority = 1, enabled = true)
     public void addClientTest() {
         AddClientClientsPage addClientClientsPage = new AddClientClientsPage(driver);
-        Assert.assertFalse(addClientClientsPage.addClient());
+        Assert.assertEquals(addClientClientsPage.addClient(), "Client created");
     }
 
     @Test (priority = 2, enabled = true)
     public void deleteClientTest() {
        DeleteClientClientsPage deleteClientClientsPage =new DeleteClientClientsPage(driver);
-        Assert.assertTrue(deleteClientClientsPage.deleteClient());
+       Assert.assertEquals(deleteClientClientsPage.deleteClient(), "1 client deleted");
     }
 
     @Test (priority = 3, enabled = true)

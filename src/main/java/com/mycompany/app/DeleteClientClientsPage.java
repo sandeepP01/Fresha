@@ -13,10 +13,7 @@ public class DeleteClientClientsPage extends PageBasics {
     @FindBy (css = "a[data-qa='nav-d-clients']")
     protected WebElement clientsIcon;
 
-    @FindBy(css = "div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p")
-    protected WebElement clientList;
-
-    @FindBy (css = "td:nth-child(1) > label")
+    @FindBy (css = "tr:nth-child(1) > td:nth-child(1) > label > div")
     protected WebElement selectClient;
 
     @FindBy (css = "div:nth-child(2) > div > button > div > p")
@@ -28,27 +25,26 @@ public class DeleteClientClientsPage extends PageBasics {
     @FindBy (css = "button[data-qa='confirm-bulk-delete']")
     protected WebElement deleteButton;
 
+    @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
+    protected WebElement toastNotification;
+
     public DeleteClientClientsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
 
-    public boolean deleteClient () {
+    public String deleteClient () {
         clickOnElement(clientsIcon);
-        waitForVisibilityOfElement("div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p");
-        int clientNum = Integer.parseInt(clientList.getText());
-        System.out.println(clientNum);
+        waitForVisibilityOfElement("tr:nth-child(1) > td:nth-child(1) > label > div");
+        waitUntilElementToBeClickable(selectClient);
         selectClient.click();
         deleteClient.click();
         List<WebElement> elements = driver.findElements(By.name("confirmDelete"));
         if (elements.size() > 0) {
             confirmDelete.sendKeys("DELETE");
         }
-            clickOnElement(deleteButton);
-            pauseForAWhile(2000);
-            waitForVisibilityOfElement("div:nth-child(2) > div:first-child > div > div > div > div > div > div > div > div > p");
-            int clientNumEnd = Integer.parseInt(clientList.getText());
-            System.out.println(clientNumEnd);
-            return (clientNum != clientNumEnd);
+        clickOnElement(deleteButton);
+        waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");
+        return toastNotification.getText();
     }
 }

@@ -83,7 +83,7 @@ public class PageBasics {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssPath)));
     }
 
-    public void enterText (WebElement webElement, String text) {
+    public void enterText(WebElement webElement, String text) {
         waitUntilElementToBeClickable(webElement);
         webElement.clear();
         webElement.sendKeys(text);

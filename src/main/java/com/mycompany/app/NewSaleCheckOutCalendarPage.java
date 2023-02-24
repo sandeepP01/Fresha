@@ -46,14 +46,13 @@ public class NewSaleCheckOutCalendarPage extends PageBasics {
     }
 
     public boolean newSaleCheckOut () {
-        pauseForAWhile(2000);
+        waitForPageToLoad();
         clickOnElement(add);
         clickOnElement(newSale);
         waitUntilElementToBeClickable(productsTab);
         clickOnElement(productsTab);
-        pauseForAWhile(2000);
-        waitUntilElementToBeClickable(selectItemToCheckOut);
-        retryingFindClick(selectItemToCheckOut);
+        waitForVisibilityOfElement("tbody > tr:nth-child(1) > td:nth-child(1)");
+        clickOnElement(selectItemToCheckOut);
         waitUntilElementToBeClickable(continueButton);
         clickOnElement(continueButton);
         clickOnElement(tipOption);
@@ -63,7 +62,7 @@ public class NewSaleCheckOutCalendarPage extends PageBasics {
         clickOnElement(paymentOption);
         waitUntilElementToBeClickable(paymentOption);
         clickOnElement(collectCash);
-        pauseForAWhile(2000);
+        waitUntilElementToBeClickable(chargeButton);
         clickOnElement(chargeButton);
         waitForVisibilityOfElement("p[data-qa='invoice-status-title']");
         return completedSaleLogo.getText().equalsIgnoreCase("Completed");

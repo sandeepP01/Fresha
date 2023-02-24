@@ -14,13 +14,14 @@ public class CalendarPageTests extends BasicTest {
     @Test (priority = 2, enabled = true)
     public void cancelAppointmentTest() {
         CancelAppointmentCalendarPage cancelAppointmentCalendarPage = new CancelAppointmentCalendarPage(driver);
-        Assert.assertTrue(cancelAppointmentCalendarPage.cancelAppointment());
+        Assert.assertEquals(cancelAppointmentCalendarPage.cancelAppointment(),
+                "Appointment cancellation successful");
     }
 
     @Test (priority = 3, enabled = true)
     public void addBlockedTimeTest() {
         AddBlockedTimeCalendarPage addBlockedTimeCalendarPage = new AddBlockedTimeCalendarPage(driver);
-        addBlockedTimeCalendarPage.addBlockedTime();
+        Assert.assertEquals(addBlockedTimeCalendarPage.addBlockedTime(), "Blocked time created");
     }
 
     @Test (priority = 4, enabled = true)

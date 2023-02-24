@@ -8,31 +8,31 @@ public class CataloguePageTests extends BasicTest {
     @Test (priority = 1, enabled = true)
     public void addNewServiceTest() {
         AddNewServiceCataloguePage addNewServiceCataloguePage = new AddNewServiceCataloguePage(driver);
-        Assert.assertTrue(addNewServiceCataloguePage.addNewService());
+        Assert.assertEquals(addNewServiceCataloguePage.addNewService(), "Service created");
    }
 
     @Test (priority = 2, enabled = true)
     public void deleteServiceTest() {
         DeleteServiceCataloguePage deleteServiceCataloguePage = new DeleteServiceCataloguePage(driver);
-        Assert.assertTrue(deleteServiceCataloguePage.deleteService());
+        Assert.assertEquals(deleteServiceCataloguePage.deleteService(), "Service deleted");
     }
 
     @Test (priority = 3, enabled = true)
     public void addVoucherTest() {
         AddVoucherCataloguePage addVoucherCataloguePage = new AddVoucherCataloguePage(driver);
-        Assert.assertTrue(addVoucherCataloguePage.addVoucher());
+        Assert.assertEquals(addVoucherCataloguePage.addVoucher(), "Voucher template has been created.");
     }
 
     @Test (priority = 4, enabled = true)
     public void deleteVoucherTest() {
         DeleteVoucherCataloguePage deleteVoucherCataloguePage = new DeleteVoucherCataloguePage(driver);
-        Assert.assertTrue(deleteVoucherCataloguePage.deleteVoucher());
+        Assert.assertEquals(deleteVoucherCataloguePage.deleteVoucher(), "Voucher template deleted");
     }
 
     @Test (priority = 5, enabled = true)
     public void createMembershipTest() {
         CreateMembershipCataloguePage createMembershipCataloguePage = new CreateMembershipCataloguePage(driver);
-        Assert.assertTrue(createMembershipCataloguePage.createMembership());
+        Assert.assertEquals(createMembershipCataloguePage.createMembership(), "Membership created");
     }
 
     @Test (priority = 6, enabled = true)

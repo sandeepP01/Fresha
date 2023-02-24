@@ -25,12 +25,15 @@ public class DeleteVoucherCataloguePage extends  PageBasics {
     @FindBy (css = "button[data-qa='voucher-template-delete-confirm-button']")
     protected WebElement confirmDeleteButton;
 
+    @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
+    protected WebElement toastNotification;
+
     public DeleteVoucherCataloguePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
 
-    public boolean deleteVoucher () {
+    public String deleteVoucher() {
         clickOnElement(catalogueTab);
         clickOnElement(vouchersTab);
         waitForVisibilityOfElement("div:nth-child(2) > table > tbody");
@@ -40,10 +43,7 @@ public class DeleteVoucherCataloguePage extends  PageBasics {
         clickOnElement(selectVoucher);
         clickOnElement(deleteVoucherButton);
         clickOnElement(confirmDeleteButton);
-        pauseForAWhile(2000);
-        waitForVisibilityOfElement("div:nth-child(2) > table > tbody");
-        int endCount = countChildElements(countVouchers);
-        System.out.println(endCount);
-        return (startCount-1 == endCount);
+        waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");
+        return toastNotification.getText();
     }
 }

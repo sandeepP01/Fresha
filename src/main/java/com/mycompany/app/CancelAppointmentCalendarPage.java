@@ -6,14 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
 public class CancelAppointmentCalendarPage extends PageBasics {
 
     @FindBy (css = "div[data-qa='swipeable-timelines'] > div:nth-child(13) > div")
-    protected WebElement countAppoinments;
-
-    @FindBy (css = "div[data-qa='swipeable-timelines'] > div:nth-child(13) > div > div:first-child")
     protected WebElement selectAppointment;
 
     @FindBy (css = "button[data-qa='more-options-button']")
@@ -28,31 +23,27 @@ public class CancelAppointmentCalendarPage extends PageBasics {
     @FindBy (css = "button[data-qa='cancel-appointment-button']")
     protected WebElement cancelAppointmentButton;
 
+    @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
+    protected WebElement toastNotification;
+
     public CancelAppointmentCalendarPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
 
-    public boolean cancelAppointment() {
+    public String cancelAppointment() {
         waitForPageToLoad();
-        pauseForAWhile(2000);
-        int countStart = countChildElements(countAppoinments);
-        System.out.println(countStart);
-        waitForVisibilityOfElement("div[data-qa='swipeable-timelines'] > div:nth-child(13) > div > div:first-child");
-        moveToElementActions(selectAppointment);
+        waitForVisibilityOfElement("div[data-qa='swipeable-timelines'] > div:nth-child(13) > div");
+        WebElement firstChildElement = selectAppointment.findElement(By.xpath(".//div[contains(@data-qa, " +
+                "'calendar-event-booking-')][1]"));
+        clickOnElement(firstChildElement);
         waitUntilElementToBeClickable(moreOptionsButton);
         clickOnElement(moreOptionsButton);
         clickOnElement(cancelButton);
         waitUntilElementToBeClickable(cancellationReasonDD);
         chooseItemFromDDWithSelect(cancellationReasonDD, "Duplicate appointment");
         clickOnElement(cancelAppointmentButton);
-        List<WebElement> elements = driver.findElements(By.cssSelector("div[data-qa='swipeable-timelines'] > div:nth-child(13) > div"));
-        System.out.println(elements.size());
-        if (elements.size() > 0 ) {
-            int countEnd = countChildElements(countAppoinments);
-            System.out.println(countEnd);
-            return (countStart - 1 == countEnd);
-        } else
-        return true;
+        waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");
+        return toastNotification.getText();
     }
 }

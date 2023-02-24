@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class AddVoucherCataloguePage extends PageBasics {
+
     @FindBy(css = "a[data-tip='Catalogue']")
     protected WebElement catalogueTab;
 
@@ -69,20 +70,19 @@ public class AddVoucherCataloguePage extends PageBasics {
     @FindBy (css = "button[data-qa='save-button']")
     protected WebElement saveButton;
 
+    @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
+    protected WebElement toastNotification;
 
     public AddVoucherCataloguePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
 
-    public boolean addVoucher () {
+    public String addVoucher() {
         waitForVisibilityOfElement("a[data-tip='Catalogue']");
         clickOnElement(catalogueTab);
         waitUntilElementToBeClickable(vouchersTab);
         clickOnElement(vouchersTab);
-        waitForVisibilityOfElement("div:nth-child(2) > table > tbody");
-        int startCount = countChildElements(countVouchers);
-        System.out.println(startCount);
         clickOnElement(addVoucherType);
         waitUntilElementToBeClickable(voucherName);
         enterText(voucherName, "New Year Special");
@@ -95,7 +95,7 @@ public class AddVoucherCataloguePage extends PageBasics {
         clickOnElement(unSelectService1);
         clickOnElement(unSelectService2);
         clickOnElement(selectServiceButton);
-        pauseForAWhile(2000);
+        waitUntilElementToBeClickable(nextStep);
         clickOnElement(nextStep);
         waitUntilElementToBeClickable(voucherTitle);
         enterText(voucherTitle, "Gift Pack");
@@ -105,10 +105,7 @@ public class AddVoucherCataloguePage extends PageBasics {
         clickOnElement(enableNotesCheckbox);
         enterText(notes, "Gift Pack" );
         clickOnElement(saveButton);
-        pauseForAWhile(2000);
-        waitForVisibilityOfElement("div:nth-child(2) > table > tbody");
-        int endCount = countChildElements(countVouchers);
-        System.out.println(endCount);
-        return (startCount+1 == endCount);
+        waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");
+        return toastNotification.getText();
     }
 }

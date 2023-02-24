@@ -44,15 +44,15 @@ public class BasicTest extends ConfigReader {
 
     @BeforeMethod
     public void browserSetup () {
-        String platform = System.getProperty("platform");
-        String browser = System.getProperty("browser");
-        String operatingSystem = System.getProperty("os");
-        String version = System.getProperty("version");
+//        String platform = System.getProperty("platform");
+//        String browser = System.getProperty("browser");
+//        String operatingSystem = System.getProperty("os");
+//        String version = System.getProperty("version");
 
-//        String platform = System.getenv("platform");
-//        String browser = System.getenv("browser");
-//        String operatingSystem = System.getenv("OS");
-//        String version = System.getenv("version");
+        String platform = System.getenv("platform");
+        String browser = System.getenv("browser");
+        String operatingSystem = System.getenv("OS");
+        String version = System.getenv("version");
 
         if (platform.equalsIgnoreCase("sauceLab")) {
             try {
@@ -119,17 +119,17 @@ public class BasicTest extends ConfigReader {
                 System.out.println("Browser is not supported");
             }
         }
+        driver.get(getBaseUrl());
     }
 
    @BeforeMethod
    public void testLogin() {
-        driver.get(getBaseUrl());
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.tryToLogin(getUserID(), getPassword());
     }
 
     @AfterMethod
-    public void closeBrowser () {
+    public void closeBrowser() {
         driver.quit();
     }
 }

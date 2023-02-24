@@ -60,7 +60,6 @@ public class AddNewAppointmentCalendarPage extends PageBasics  {
         chooseItemFromDDWithSelect(teamMemberDropDown, "Tom");
         enterText(notes, "Hello");
         clickOnElement(saveAppointment);
-        pauseForAWhile(2000);
         webDriverWait.until(ExpectedConditions.visibilityOf(countAppoinment));
         int countEnd = countChildElements(countAppoinment);
         System.out.println(countEnd);

@@ -1,12 +1,9 @@
 package com.mycompany.app;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.List;
 
 public class CreateMembershipCataloguePage extends PageBasics {
 
@@ -49,29 +46,18 @@ public class CreateMembershipCataloguePage extends PageBasics {
     @FindBy (css = "table > tbody")
     protected WebElement countMembership;
 
-    @FindBy(css = "button[data-qa='fresha-profile-overview-start-button']")
-    protected WebElement startNowButton;
+    @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
+    protected WebElement toastNotification;
 
     public CreateMembershipCataloguePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
 
-    public boolean createMembership() {
-        int startMembershipCount;
+    public String createMembership() {
         clickOnElement(catalogueTab);
         clickOnElement(membershipsTab);
-        pauseForAWhile(2000);
-        List<WebElement> elements = driver.findElements(By.cssSelector("div[data-qa='settings-nav-header-title'] > h1"));
-        if (!elements.isEmpty()) {
-            startMembershipCount = countChildElements(countMembership);
-            System.out.println(startMembershipCount);
-            clickOnElement(createMembershipButton);
-        } else {
-            clickOnElement(startNowButton);
-            startMembershipCount = 0;
-            System.out.println(startMembershipCount);
-        }
+        clickOnElement(createMembershipButton);
         enterText(membershipName, "Yearly Plan");
         enterText(membershipDescription, "Yearly Plan");
         clickOnElement(includedServices);
@@ -86,6 +72,6 @@ public class CreateMembershipCataloguePage extends PageBasics {
         waitForVisibilityOfElement("table > tbody");
         int endMembershipCount = countChildElements(countMembership);
         System.out.println(endMembershipCount);
-        return (startMembershipCount+1 == endMembershipCount);
+        return toastNotification.getText();
     }
 }
