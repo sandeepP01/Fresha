@@ -28,7 +28,6 @@ public class AddAppointmentCustomerAcc extends PageBasics {
     @FindBy (css = "div > li:nth-child(1) > div > p")
     protected WebElement appointmentTime;
 
-
     @FindBy (css ="textarea[name='notes']")
     protected WebElement notes;
 

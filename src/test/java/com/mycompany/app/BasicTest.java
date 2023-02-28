@@ -1,7 +1,6 @@
 package com.mycompany.app;
 
 import dataprovider.ConfigReader;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -14,7 +13,6 @@ import org.testng.annotations.BeforeMethod;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 
 public class BasicTest extends ConfigReader {
 
@@ -33,12 +31,6 @@ public class BasicTest extends ConfigReader {
     protected String lambdatest_access_key = "c2wZzpRaBJ2U7NhORYd0wPojNnrLx0vSrWKRBjUFUAtm351TLJ";
 
     protected String lambdaURL = "@hub.lambdatest.com/wd/hub";
-
-    protected String browserStack_username = "sandeepkumarralh_kC1P4a";
-
-    protected String browserStack_access_key = "tEUop3sV1dNyPHjiD9X4";
-
-    protected String browserStackURL = "@sandeepkumarralh_kc1p4a.browserstack.com";
 
     protected URL url;
 
@@ -67,12 +59,12 @@ public class BasicTest extends ConfigReader {
                 caps.setCapability("platform", operatingSystem);
                 caps.setCapability("name", "<Fresha>");
 
-                url = new URL("https://oauth-sandeepk.ralh-e9183:da3ac58f-f233-4ea7-b02a-dd9e6cc5e221@ondemand.us-west-1.saucelabs.com:443/wd/hub");
+                url = new URL("https://" + sauceLab_username + ":" + sauceLab_access_key +"" +
+                        sauceLabURL);
                 driver = new RemoteWebDriver(url, caps);
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-
         } else if (platform.equalsIgnoreCase("LambdaTest")) {
             try {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -81,30 +73,13 @@ public class BasicTest extends ConfigReader {
                 capabilities.setCapability("platform", "win10");
                 capabilities.setCapability("build", "Fresha");
                 capabilities.setCapability("name", "Fresha");
-                driver = new RemoteWebDriver(new URL("https://" + lambdatest_username + ":" + lambdatest_access_key + lambdaURL), capabilities);
+                driver = new RemoteWebDriver(new URL("https://" + lambdatest_username + ":" + lambdatest_access_key
+                        + lambdaURL), capabilities);
             } catch (MalformedURLException e) {
                 System.out.println("Invalid URL");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
-        } else if (platform.equalsIgnoreCase("browserstack")) {
-            try {
-                MutableCapabilities capabilities = new MutableCapabilities();
-                capabilities.setCapability("browserName", "Chrome");
-                capabilities.setCapability("browserVersion", "102.0");
-                HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
-                browserstackOptions.put("platformName", "Windows");
-                browserstackOptions.put("osVersion", "11");
-                capabilities.setCapability("bstack:options", browserstackOptions);
-
-                url = new URL("https://sandeepkumarralh_kC1P4a:tEUop3sV1dNyPHjiD9X4@sandeepkumarralh_kc1p4a.browserstack.com");
-                driver = new RemoteWebDriver(url, capabilities);
-
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
-
         } else if (platform.equalsIgnoreCase("local")) {
             if (browser.equalsIgnoreCase("chrome")) {
                 driver = new ChromeDriver();
@@ -115,8 +90,6 @@ public class BasicTest extends ConfigReader {
             } else if (browser.equalsIgnoreCase("edge")) {
                 driver = new EdgeDriver();
                 driver.manage().window().maximize();
-            } else {
-                System.out.println("Browser is not supported");
             }
         }
         driver.get(getBaseUrl());
@@ -130,7 +103,11 @@ public class BasicTest extends ConfigReader {
 
     @AfterMethod
     public void closeBrowser() {
-        driver.quit();
+        try {
+            driver.quit();
+        } catch (org.openqa.selenium.WebDriverException e) {
+            driver.quit();
+        }
     }
 }
 

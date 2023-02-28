@@ -51,6 +51,7 @@ public class NewSaleCheckOutCalendarPage extends PageBasics {
         clickOnElement(newSale);
         waitUntilElementToBeClickable(productsTab);
         clickOnElement(productsTab);
+        waitForPageToLoad();
         waitForVisibilityOfElement("tbody > tr:nth-child(1) > td:nth-child(1)");
         clickOnElement(selectItemToCheckOut);
         waitUntilElementToBeClickable(continueButton);

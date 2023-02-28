@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class ClientsPageTests extends BasicTest {
 
-   @Test  (priority = 1, enabled = true)
+    @Test (priority = 1, enabled = true)
     public void addClientTest() {
         AddClientClientsPage addClientClientsPage = new AddClientClientsPage(driver);
         Assert.assertEquals(addClientClientsPage.addClient(), "Client created");
