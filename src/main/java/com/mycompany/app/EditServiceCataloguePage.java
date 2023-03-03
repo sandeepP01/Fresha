@@ -33,7 +33,6 @@ public class EditServiceCataloguePage extends PageBasics {
     @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
     protected WebElement toastNotification;
 
-
     public EditServiceCataloguePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -47,9 +46,8 @@ public class EditServiceCataloguePage extends PageBasics {
         Actions actions = new Actions(driver);
         actions.moveToElement(treatmentTypeName).click().perform();
         enterText(serviceDescription, "Hair-Treatment");
-        pauseForAWhile(2000);
+        waitUntilElementToBeClickable(saveButton);
         clickOnElement(saveButton);
-        retryingFindClick(saveButton);
         waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");
         return toastNotification.getText();
     }

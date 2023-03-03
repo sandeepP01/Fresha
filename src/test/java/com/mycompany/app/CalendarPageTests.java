@@ -8,7 +8,7 @@ public class CalendarPageTests extends BasicTest {
     @Test (priority = 1, enabled = true)
     public void createAppointmentTest() {
         AddNewAppointmentCalendarPage newAppointmentCalendarPage = new AddNewAppointmentCalendarPage(driver);
-        Assert.assertTrue(newAppointmentCalendarPage.createAppointment());
+        Assert.assertEquals(newAppointmentCalendarPage.createAppointment(), "Appointment created");
     }
 
     @Test (priority = 2, enabled = true)

@@ -35,20 +35,17 @@ public class AddNewAppointmentCalendarPage extends PageBasics  {
     @FindBy (css = "button[data-qa='save-appointment-button']")
     protected WebElement saveAppointment;
 
-    @FindBy (css = "div[data-qa='swipeable-timelines']")
-    protected WebElement countAppoinment;
+    @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
+    protected WebElement toastNotification;
 
     public AddNewAppointmentCalendarPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
 
-    public boolean createAppointment () {
+    public String createAppointment () {
         webDriverWait.until(ExpectedConditions.visibilityOf(add));
         clickOnElement(add);
-        webDriverWait.until(ExpectedConditions.visibilityOf(countAppoinment));
-        int countStart = countChildElements(countAppoinment);
-        System.out.println(countStart);
         waitUntilElementToBeClickable(newAppointment);
         clickOnElement(newAppointment);
         waitForVisibilityOfElement(("div[data-qa='appointment-item-card'] > div:nth-child(3) > div:nth-child(2) > select"));
@@ -60,9 +57,7 @@ public class AddNewAppointmentCalendarPage extends PageBasics  {
         chooseItemFromDDWithSelect(teamMemberDropDown, "Tom");
         enterText(notes, "Hello");
         clickOnElement(saveAppointment);
-        webDriverWait.until(ExpectedConditions.visibilityOf(countAppoinment));
-        int countEnd = countChildElements(countAppoinment);
-        System.out.println(countEnd);
-        return (countStart+1 == countEnd);
+        waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");
+        return toastNotification.getText();
     }
 }

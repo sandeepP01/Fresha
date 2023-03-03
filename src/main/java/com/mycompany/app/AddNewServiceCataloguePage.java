@@ -60,8 +60,7 @@ public class AddNewServiceCataloguePage extends PageBasics {
 
     public String addNewService() {
         clickOnElement(catalogueTab);
-        waitForPageToLoad();
-        waitUntilElementToBeClickable(addNewButton);
+        pauseForAWhile(2000);
         clickOnElement(addNewButton);
         waitUntilElementToBeClickable(addNewService);
         clickOnElement(addNewService);

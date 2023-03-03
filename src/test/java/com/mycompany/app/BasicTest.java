@@ -36,15 +36,15 @@ public class BasicTest extends ConfigReader {
 
     @BeforeMethod
     public void browserSetup () {
-//        String platform = System.getProperty("platform");
-//        String browser = System.getProperty("browser");
-//        String operatingSystem = System.getProperty("os");
-//        String version = System.getProperty("version");
+        String platform = System.getProperty("platform");
+        String browser = System.getProperty("browser");
+        String operatingSystem = System.getProperty("os");
+        String version = System.getProperty("version");
 
-        String platform = System.getenv("platform");
-        String browser = System.getenv("browser");
-        String operatingSystem = System.getenv("OS");
-        String version = System.getenv("version");
+//        String platform = System.getenv("platform");
+//        String browser = System.getenv("browser");
+//        String operatingSystem = System.getenv("OS");
+//        String version = System.getenv("version");
 
         if (platform.equalsIgnoreCase("sauceLab")) {
             try {

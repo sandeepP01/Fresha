@@ -38,7 +38,7 @@ public class AddClientClientsPage extends PageBasics {
     protected WebElement year;
 
     @FindBy(name = "note")
-    protected WebElement cleintInfo;
+    protected WebElement clientInfo;
 
     @FindBy(css = "button[data-qa='save-button']")
     protected WebElement button;
@@ -62,11 +62,11 @@ public class AddClientClientsPage extends PageBasics {
         enterText(email, "Sean.Testlio@gmail.com");
         chooseItemFromDDWithSelect(genderDropdown, "Male");
         clickOnElement(dateOfBirth);
-        pauseForAWhile(2000);
-        waitForVisibilityOfElement("div:nth-child(3) > div:nth-child(6)");
+        waitForPageToLoad();
+        waitUntilElementToBeClickable(selectDate);
         selectDate.click();
         enterText(year, "2001");
-        enterText(cleintInfo, "Allergy to conditioner");
+        enterText(clientInfo, "Allergy to conditioner");
         clickOnElement(button);
         waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");
         return toastNotification.getText();

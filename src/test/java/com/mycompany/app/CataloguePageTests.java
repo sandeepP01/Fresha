@@ -46,4 +46,22 @@ public class CataloguePageTests extends BasicTest {
         DeleteMembershipCataloguePage deleteMembershipCataloguePage = new DeleteMembershipCataloguePage(driver);
         Assert.assertTrue(deleteMembershipCataloguePage.deleteMembership());
     }
+
+    @Test (priority = 8, enabled = true)
+    public void newStockOrderTest() {
+        NewStockOrderCataloguePage newStockOrderCataloguePage = new NewStockOrderCataloguePage(driver);
+        Assert.assertEquals(newStockOrderCataloguePage.NewStockOrder(), "Stock order is ready!");
+    }
+
+    @Test (priority = 9, enabled = true)
+    public void addNewSupplierTest() {
+        AddNewSupplierCataloguePage addNewSupplierCataloguePage = new AddNewSupplierCataloguePage(driver);
+        Assert.assertEquals(addNewSupplierCataloguePage.addNewSupplier(), "Supplier created");
+    }
+
+    @Test (priority = 10, enabled = true)
+    public void deleteSupplierTest() {
+        DeleteSupplierCataloguePage deleteSupplierCataloguePage = new DeleteSupplierCataloguePage(driver);
+        Assert.assertEquals(deleteSupplierCataloguePage.deleteSupplier(), "Supplier deleted");
+    }
 }
