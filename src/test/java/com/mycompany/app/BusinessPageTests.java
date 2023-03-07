@@ -12,4 +12,11 @@ public class BusinessPageTests extends BasicTest {
         Assert.assertEquals(updateBusinessDetailsBusinessSettingsPage.updateBusinessDetails(),
                 "Account settings updated");
     }
+
+    @Test(priority = 2, enabled = true)
+    public void addTeamMemberTest() {
+        AddTeamMemberBusinessSettingsPage addTeamMemberBusinessSettingsPage = new AddTeamMemberBusinessSettingsPage(driver);
+        Assert.assertEquals(addTeamMemberBusinessSettingsPage.addTeamMember(),
+                "https://partners.fresha.com/staff/employees/add/confirmed");
+    }
 }
