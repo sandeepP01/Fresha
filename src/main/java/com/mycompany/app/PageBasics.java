@@ -3,6 +3,7 @@ package com.mycompany.app;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -121,7 +122,15 @@ public class PageBasics {
     }
 
     public void waitForPageToLoad() {
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+        FluentWait<WebDriver> driverWait = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(250));
+
+        try {
+            driverWait.until(isTrue -> ((JavascriptExecutor) driver).executeScript("return document.readyState")
+                    .equals("complete"));
+        } catch (WebDriverException e) {
+            System.out.println("Driver exception occured. " + e.getMessage());
+        }
     }
 
     public void waitUntilPresenceOfElement(String webElement) {

@@ -53,10 +53,10 @@ public class AddBlockedTimeCalendarPage extends PageBasics {
         WebElement desiredDateElement = driver.findElement(By.xpath("//*[@id='app']/div[6]/div/div/div[2]" +
                 "/div/div/div/div[2]/div/div[3]/div[3]/div[5]"));
         desiredDateElement.click();
-        chooseItemFromDDWithSelect(teamMemberDropDown, "Tom");
+        chooseItemFromDDWithSelect(teamMemberDropDown, "Sean TestLio");
         chooseItemFromDDWithSelect(startTimeDropDown, "12:30pm");
         chooseItemFromDDWithSelect(endTimeDropDown, "1:00pm");
-        waitForVisibilityOfElement ( "label[data-qa='allowOnlineBooking-label'] > div:first-child");
+        waitForVisibilityOfElement ( "label[data-qa='allowOnlineBooking-label']");
         clickOnElement(allowOnlineBookingCheckBox);
         enterText(description, "Tea break");
         clickOnElement(save);

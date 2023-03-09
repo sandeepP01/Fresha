@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CancelAppointmentCalendarPage extends PageBasics {
 
-    @FindBy (css = "div[data-qa='swipeable-timelines'] > div:nth-child(13) > div")
+    @FindBy (css = "div[data-qa='swipeable-timelines'] > div:nth-child(10) > div")
     protected WebElement selectAppointment;
 
     @FindBy (css = "button[data-qa='more-options-button']")
@@ -33,9 +33,9 @@ public class CancelAppointmentCalendarPage extends PageBasics {
 
     public String cancelAppointment() {
         waitForPageToLoad();
-        waitForVisibilityOfElement("div[data-qa='swipeable-timelines'] > div:nth-child(13) > div");
-        WebElement firstChildElement = selectAppointment.findElement(By.xpath(".//div[contains(@data-qa, " +
-                "'calendar-event-booking-')][1]"));
+        waitForVisibilityOfElement("div[data-qa='swipeable-timelines'] > div:nth-child(10) > div");
+        WebElement firstChildElement = selectAppointment.findElement(By.xpath(".//div[contains(@data-qa, "
+                + "'calendar-event-booking-')][1]"));
         clickOnElement(firstChildElement);
         waitUntilElementToBeClickable(moreOptionsButton);
         clickOnElement(moreOptionsButton);

@@ -51,6 +51,7 @@ public class NewStockOrderCataloguePage extends PageBasics {
         waitForVisibilityOfElement("td:nth-child(2) > div > div");
         clickOnElement(selectProduct);
         clickOnElement(addProduct);
+        waitUntilElementToBeClickable(orderQty);
         enterText(orderQty, "3");
         clickOnElement(createOrderButton);
         waitForVisibilityOfElement("p[data-qa='content-title']");

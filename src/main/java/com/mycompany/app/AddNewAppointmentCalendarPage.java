@@ -43,7 +43,7 @@ public class AddNewAppointmentCalendarPage extends PageBasics  {
         PageFactory.initElements(driver,this);
     }
 
-    public String createAppointment () {
+    public String createAppointment() {
         webDriverWait.until(ExpectedConditions.visibilityOf(add));
         clickOnElement(add);
         waitUntilElementToBeClickable(newAppointment);
@@ -54,7 +54,8 @@ public class AddNewAppointmentCalendarPage extends PageBasics  {
         waitUntilElementToBeClickable(serviceOption);
         clickOnElement(serviceOption);
         chooseItemFromDDWithSelect(durationDropDown,"5min");
-        chooseItemFromDDWithSelect(teamMemberDropDown, "Tom");
+        waitUntilElementToBeClickable(teamMemberDropDown);
+        chooseItemFromDDWithSelect(teamMemberDropDown, "Wendy Smith (Demo)");
         enterText(notes, "Hello");
         clickOnElement(saveAppointment);
         waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");

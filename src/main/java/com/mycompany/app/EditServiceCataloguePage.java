@@ -27,7 +27,7 @@ public class EditServiceCataloguePage extends PageBasics {
     @FindBy(name = "description")
     protected WebElement serviceDescription;
 
-    @FindBy(css = "button[data-qa='save-service-button']")
+    @FindBy(css = "button[data-qa='save-service-button'] > div:nth-child(2)")
     protected WebElement saveButton;
 
     @FindBy(css = "#react > div > div:first-child > div > div > div:nth-child(2)")
@@ -46,6 +46,7 @@ public class EditServiceCataloguePage extends PageBasics {
         Actions actions = new Actions(driver);
         actions.moveToElement(treatmentTypeName).click().perform();
         enterText(serviceDescription, "Hair-Treatment");
+        pauseForAWhile(2000);
         waitUntilElementToBeClickable(saveButton);
         clickOnElement(saveButton);
         waitForVisibilityOfElement("#react > div > div:first-child > div > div > div:nth-child(2)");

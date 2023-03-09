@@ -62,6 +62,7 @@ public class AddTeamMemberBusinessSettingsPage extends PageBasics {
         clickOnElement(selectColor);
         clickOnElement(addTeamMemberButton);
         pauseForAWhile(2000);
+        waitForPageToLoad();
         return driver.getCurrentUrl();
     }
 }
